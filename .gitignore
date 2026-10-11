@@ -1,0 +1,23 @@
+# Compilados de Java
+*.class
+
+# Salidas de compilacion
+bin/
+out/
+build/
+target/
+
+# IDE (IntelliJ / Eclipse)
+.idea/
+*.iml
+.classpath
+.project
+.settings/
+
+# VS Code: ignora lo temporal, pero conserva la config del proyecto
+.vscode/*
+!.vscode/settings.json
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
