@@ -8,6 +8,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 
@@ -26,12 +27,13 @@ public class VentanaPrincipal extends JFrame {
     private final JTextField campoBuscar = new JTextField();
 
     private final JTextArea areaLista = new JTextArea();
-    private final JLabel etiquetaEstado = new JLabel("Lista vacia");
+    private final JTextArea etiquetaEstado = new JTextArea("Lista vacia");
 
     public VentanaPrincipal() {
         setTitle("Venta de Boletos - Lista Simple");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(760, 560);
+        setSize(780, 720);
+        setMinimumSize(new Dimension(660, 620));
         setLocationRelativeTo(null);
         setLayout(new BorderLayout(6, 6));
 
@@ -41,38 +43,46 @@ public class VentanaPrincipal extends JFrame {
 
         areaLista.setEditable(false);
 
+        etiquetaEstado.setEditable(false);
+        etiquetaEstado.setLineWrap(true);
+        etiquetaEstado.setWrapStyleWord(true);
+        etiquetaEstado.setRows(3);
+        JScrollPane scrollEstado = new JScrollPane(etiquetaEstado);
+        scrollEstado.setPreferredSize(new Dimension(0, 90));
+
         add(panelSuperior, BorderLayout.NORTH);
         add(new JScrollPane(areaLista), BorderLayout.CENTER);
-        add(etiquetaEstado, BorderLayout.SOUTH);
+        add(scrollEstado, BorderLayout.SOUTH);
 
         refrescarVista();
     }
 
     private JPanel crearFormulario() {
-        JPanel panel = new JPanel(new GridLayout(0, 4, 4, 4));
-        panel.add(new JLabel("ID:"));
-        panel.add(campoId);
-        panel.add(new JLabel("Nombre:"));
-        panel.add(campoNombre);
-        panel.add(new JLabel("Apellido paterno:"));
-        panel.add(campoPaterno);
-        panel.add(new JLabel("Apellido materno:"));
-        panel.add(campoMaterno);
-        panel.add(new JLabel("Edad:"));
-        panel.add(campoEdad);
-        panel.add(new JLabel("CURP:"));
-        panel.add(campoCurp);
-        panel.add(new JLabel("Telefono:"));
-        panel.add(campoTelefono);
-        panel.add(new JLabel("Posicion:"));
-        panel.add(campoPosicion);
-        panel.add(new JLabel("Valor a buscar (ID):"));
-        panel.add(campoBuscar);
+        JPanel panelEtiquetas = new JPanel(new GridLayout(0, 1, 2, 2));
+        JPanel panelCampos = new JPanel(new GridLayout(0, 1, 2, 2));
+        agregarCampo(panelEtiquetas, panelCampos, "ID:", campoId);
+        agregarCampo(panelEtiquetas, panelCampos, "Nombre:", campoNombre);
+        agregarCampo(panelEtiquetas, panelCampos, "Apellido paterno:", campoPaterno);
+        agregarCampo(panelEtiquetas, panelCampos, "Apellido materno:", campoMaterno);
+        agregarCampo(panelEtiquetas, panelCampos, "Edad:", campoEdad);
+        agregarCampo(panelEtiquetas, panelCampos, "CURP:", campoCurp);
+        agregarCampo(panelEtiquetas, panelCampos, "Telefono:", campoTelefono);
+        agregarCampo(panelEtiquetas, panelCampos, "Posicion:", campoPosicion);
+        agregarCampo(panelEtiquetas, panelCampos, "Valor a buscar (ID):", campoBuscar);
+
+        JPanel panel = new JPanel(new BorderLayout(6, 0));
+        panel.add(panelEtiquetas, BorderLayout.WEST);
+        panel.add(panelCampos, BorderLayout.CENTER);
         return panel;
     }
 
+    private void agregarCampo(JPanel panelEtiquetas, JPanel panelCampos, String etiqueta, JTextField campo) {
+        panelEtiquetas.add(new JLabel(etiqueta));
+        panelCampos.add(campo);
+    }
+
     private JPanel crearBotones() {
-        JPanel panel = new JPanel(new GridLayout(0, 3, 4, 4));
+        JPanel panel = new JPanel(new GridLayout(0, 3, 2, 2));
 
         panel.add(crearBoton("Insertar inicio", e -> insertarAlInicio()));
         panel.add(crearBoton("Insertar final", e -> insertarAlFinal()));

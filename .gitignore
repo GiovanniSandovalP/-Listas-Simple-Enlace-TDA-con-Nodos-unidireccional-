@@ -7,14 +7,14 @@ out/
 build/
 target/
 
-# IDE (IntelliJ / Eclipse)
+# IDE 
 .idea/
 *.iml
 .classpath
 .project
 .settings/
 
-# VS Code: ignora lo temporal, pero conserva la config del proyecto
+# VS Code
 .vscode
 .vscode/*
 !.vscode/settings.json
