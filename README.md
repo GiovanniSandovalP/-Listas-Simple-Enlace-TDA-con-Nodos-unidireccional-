@@ -15,7 +15,8 @@ Proyecto académico de Estructuras de Datos que implementa una Lista Simple Enla
 
 ## Operaciones disponibles
 
-- Insertar al inicio, al final y en una posición.
-- Remover al inicio, al final y por posición.
-- Mostrar el inicio, el final y un elemento por posición.
-- Buscar por ID, verificar si está vacía, obtener tamaño y vaciar la lista.
+- **Insertar**: al inicio, al final y en una posición.
+- **Remover**: al inicio, al final y por posición.
+- **Mostrar**: el inicio, el final y un elemento por posición.
+- **Buscar**: por ID.
+- **Estado**: verificar si está vacía, obtener el tamaño y vaciar la lista.
